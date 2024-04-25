@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
+    <title>Random Kamil Company Temporary Home Page</title>
+</head>
+
+<body class="p-3 mb-2 bg-light text-dark">
+
+<div>
+    <div class="mb-4">
+        <h2 class="fw-semibold">Random Kamil Company Temporary Home Page</h2>
+    </div>
+
+</div>
+
+<hr>
+
+<p class="mx-auto p-2 fs-4 fw-medium" style="width: 550px;">
+    Welcome to the Random Company home page!
+</p>
+
+<hr>
+
+<!-- display user name and role(s) -->
+<p class="text-sm mb-3 mt-1 lh-1 fw-medium font-monospace">
+    User: <span sec:authentication="principal.username"></span>
+    <br>
+    Role(s): <span sec:authentication="principal.authorities"></span>
+</p>
+
+<!-- link to point to /list-employees -->
+<div class="p-3 bg-info bg-opacity-10 border border-info border-start-3 rounded">
+    <p>
+    <div class="d-grid gap-2 col-6 mx-auto">
+        <a th:href="@{/employees/list}" class="btn btn-success fs-6 fst-italic">
+            Contractor's Employees
+            (Employee Directory DATA BASE)
+        </a>
+    </div>
+    </p>
+</div>
+
+<br>
+
+<div sec:authorize="hasRole('MANAGER')">
+
+    <!-- link to point to /leaders ... this is for the managers -->
+    <p>
+        <a th:href="@{/manager}"
+           class="link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover fs-6 fst-italic">
+            Leadership Meeting
+        </a>
+        (Only for Manager people)
+    </p>
+
+</div>
+
+<div sec:authorize="hasRole('ADMIN')">
+
+    <!-- link to point to /systems ... this is for the admins -->
+
+    <p>
+        <a th:href="@{/admin}"
+           class="link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover fs-6 fst-italic">
+            IT Systems Meeting
+        </a>
+        (Only for Admin people)
+    </p>
+
+</div>
+
+<hr>
+
+<!-- Add a logout button -->
+<form action="#" th:action="@{/logout}"
+      method="POST">
+
+    <input type="submit" value="Logout" class="btn btn-danger btn-sm mt-2"/>
+
+</form>
+
+
+</body>
+
+</html>
