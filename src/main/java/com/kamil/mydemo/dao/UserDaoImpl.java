@@ -3,8 +3,10 @@ package com.kamil.mydemo.dao;
 import com.kamil.mydemo.entity.User;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
+@Qualifier("user")
 @Repository
 public class UserDaoImpl implements UserDao {
 
