@@ -3,6 +3,7 @@ package com.kamil.mydemo.security;
 import com.kamil.mydemo.service.UserService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -32,8 +33,16 @@ public class DemoSecurityConfig {
         http.authorizeHttpRequests(configurer ->
                         configurer
                                 .requestMatchers("/").hasRole("EMPLOYEE")
+                                .requestMatchers(HttpMethod.GET, "/employees/list").permitAll()
                                 .requestMatchers("/manager/**").hasRole("MANAGER")
+                                .requestMatchers(HttpMethod.GET, "/employees/showFormForAdd").hasRole("MANAGER")
+                                .requestMatchers(HttpMethod.GET, "/employees/showFormForAdd").hasRole("ADMIN")
+                                .requestMatchers(HttpMethod.GET, "/employees/showFormForUpdate").hasRole("MANAGER")
+                                .requestMatchers(HttpMethod.GET, "/employees/showFormForUpdate").hasRole("ADMIN")
+                                .requestMatchers(HttpMethod.POST, "/employees/save").hasRole("MANAGER")
+                                .requestMatchers(HttpMethod.POST, "/employees/save").hasRole("ADMIN")
                                 .requestMatchers("/admin/**").hasRole("ADMIN")
+                                .requestMatchers(HttpMethod.GET, "/employees/delete").hasRole("ADMIN")
                                 .anyRequest().authenticated()
                 )
                 .formLogin(form ->
