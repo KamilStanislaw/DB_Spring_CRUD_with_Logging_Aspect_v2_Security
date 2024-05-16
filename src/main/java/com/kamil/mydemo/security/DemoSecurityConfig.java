@@ -32,8 +32,8 @@ public class DemoSecurityConfig {
 
         http.authorizeHttpRequests(configurer ->
                         configurer
-                                .requestMatchers("/").hasRole("EMPLOYEE")
-                                .requestMatchers(HttpMethod.GET, "/employees/list").permitAll()
+                                .requestMatchers("/").hasRole("EMPLOYEE") // all ppl have role employee
+                                .requestMatchers(HttpMethod.GET, "/employees/list").hasAnyRole("EMPLOYEE", "MANAGER", "ADMIN")
                                 .requestMatchers("/manager/**").hasRole("MANAGER")
                                 .requestMatchers(HttpMethod.GET, "/employees/showFormForAdd").hasAnyRole("MANAGER", "ADMIN")
                                 .requestMatchers(HttpMethod.GET, "/employees/showFormForUpdate").hasAnyRole("MANAGER", "ADMIN")
