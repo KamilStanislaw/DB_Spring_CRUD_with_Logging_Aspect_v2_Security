@@ -1,6 +1,6 @@
 package com.kamil.mydemo.service;
 
-import com.kamil.mydemo.dao.EmployeeRepository;
+import com.kamil.mydemo.repository.EmployeeRepository;
 import com.kamil.mydemo.entity.Employee;
 import org.springframework.stereotype.Service;
 

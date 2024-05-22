@@ -1,4 +1,4 @@
-package com.kamil.mydemo.dao;
+package com.kamil.mydemo.repository;
 
 import com.kamil.mydemo.entity.User;
 

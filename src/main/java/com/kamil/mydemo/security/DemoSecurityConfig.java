@@ -33,13 +33,8 @@ public class DemoSecurityConfig {
         http.authorizeHttpRequests(configurer ->
                         configurer
                                 .requestMatchers("/").hasRole("EMPLOYEE") // all ppl have role employee
-                                .requestMatchers(HttpMethod.GET, "/employees/list").hasAnyRole("EMPLOYEE", "MANAGER", "ADMIN")
                                 .requestMatchers("/manager/**").hasRole("MANAGER")
-                                .requestMatchers(HttpMethod.GET, "/employees/showFormForAdd").hasAnyRole("MANAGER", "ADMIN")
-                                .requestMatchers(HttpMethod.GET, "/employees/showFormForUpdate").hasAnyRole("MANAGER", "ADMIN")
-                                .requestMatchers(HttpMethod.POST, "/employees/save").hasAnyRole("MANAGER", "ADMIN")
                                 .requestMatchers("/admin/**").hasRole("ADMIN")
-                                .requestMatchers(HttpMethod.GET, "/employees/delete").hasRole("ADMIN")
                                 .anyRequest().authenticated()
                 )
                 .formLogin(form ->

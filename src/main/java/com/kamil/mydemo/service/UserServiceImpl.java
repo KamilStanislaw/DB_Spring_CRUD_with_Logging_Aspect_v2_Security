@@ -1,7 +1,7 @@
 package com.kamil.mydemo.service;
 
-import com.kamil.mydemo.dao.RoleDao;
-import com.kamil.mydemo.dao.UserDao;
+import com.kamil.mydemo.repository.RoleDao;
+import com.kamil.mydemo.repository.UserDao;
 import com.kamil.mydemo.entity.Role;
 import com.kamil.mydemo.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
