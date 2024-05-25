@@ -22,8 +22,9 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public Employee findById(int id) {
-        Optional<Employee> result = employeeRepository.findById(id);
+    public Employee findById(Long id) {
+        Integer idInt = id.intValue();
+        Optional<Employee> result = employeeRepository.findById(idInt);
 
         Employee employee = null;
 
@@ -43,7 +44,8 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public void deleteById(int id) {
-        employeeRepository.deleteById(id);
+    public void deleteById(Long id) {
+        Integer idInt = id.intValue();
+        employeeRepository.deleteById(idInt);
     }
 }

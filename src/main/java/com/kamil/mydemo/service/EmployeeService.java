@@ -8,10 +8,10 @@ public interface EmployeeService {
 
     List<Employee> findAll();
 
-    Employee findById(int id);
+    Employee findById(Long id);
 
     void save(Employee employee);
 
-    void deleteById(int id);
+    void deleteById(Long id);
 
 }

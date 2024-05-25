@@ -42,7 +42,7 @@ public class EmployeeController {
     }
 
     @GetMapping("/showFormForUpdate")
-    public String showFormForUpdate(@RequestParam("employeeId") int id,
+    public String showFormForUpdate(@RequestParam("employeeId") Long id,
                                     Model model) {
         // get the employee from the service
         Employee theEmployee = employeeService.findById(id);
@@ -65,7 +65,7 @@ public class EmployeeController {
     }
 
     @GetMapping("/delete")
-    public String delete(@RequestParam("employeeId") int id) {
+    public String delete(@RequestParam("employeeId") Long id) {
 
         // delete the employee
         employeeService.deleteById(id);
