@@ -1,8 +1,16 @@
 package com.kamil.mydemo.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.util.Collection;
 
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "user")
 public class User {
@@ -27,9 +35,6 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Collection<Role> roles;
 
-    public User() {
-    }
-
     public User(String userName, String password, boolean enabled) {
         this.userName = userName;
         this.password = password;
@@ -41,46 +46,6 @@ public class User {
         this.userName = userName;
         this.password = password;
         this.enabled = enabled;
-        this.roles = roles;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public boolean isEnabled() {
-        return enabled;
-    }
-
-    public void setEnabled(boolean enabled) {
-        this.enabled = enabled;
-    }
-
-    public Collection<Role> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(Collection<Role> roles) {
         this.roles = roles;
     }
 

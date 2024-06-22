@@ -2,6 +2,7 @@ package com.kamil.mydemo.controller;
 
 import com.kamil.mydemo.entity.Employee;
 import com.kamil.mydemo.service.EmployeeService;
+import jakarta.websocket.server.PathParam;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -30,7 +31,7 @@ public class EmployeeController {
         return "employees/list-employees";
     }
 
-    @GetMapping("/showFormForAdd")
+    @GetMapping("/add")
     public String showFormForAdd(Model model) {
 
         // create model attribute to bind form data
@@ -41,9 +42,8 @@ public class EmployeeController {
         return "employees/employee-form";
     }
 
-    @GetMapping("/showFormForUpdate")
-    public String showFormForUpdate(@RequestParam("employeeId") Long id,
-                                    Model model) {
+    @GetMapping("/{id}/update")
+    public String showFormForUpdate(@PathParam("id") Long id, Model model) {
         // get the employee from the service
         Employee theEmployee = employeeService.findById(id);
 
@@ -64,8 +64,8 @@ public class EmployeeController {
         return "redirect:/employees/list";
     }
 
-    @GetMapping("/delete")
-    public String delete(@RequestParam("employeeId") Long id) {
+    @GetMapping("/{id}/delete")
+    public String delete(@PathParam("id") Long id) {
 
         // delete the employee
         employeeService.deleteById(id);
